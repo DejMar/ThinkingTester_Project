@@ -28,6 +28,6 @@ export class LoginPage {
 
     retriveToken = async () => {
         const token = await getToken(loginDetails.firstName, loginDetails.lastName, loginDetails.email, loginDetails.password);
-        console.log('Retrieved token:', token);
+        console.log('Retrieved token: ', token);
     }
 }

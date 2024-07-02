@@ -3,6 +3,8 @@ import { ContactPage } from "../../page-object/AddContactPage";
 import { expect, test } from '@playwright/test';
 import { faker } from '@faker-js/faker/locale/en'
 
+const BASE_URL = "https://thinking-tester-contact-list.herokuapp.com";
+
 test.describe('API - Manipulating users', () => {
     let loginPage
     let contactPage
@@ -33,7 +35,7 @@ test.describe('API - Manipulating users', () => {
             "country": faker.location.country()
         };
 
-        const response = await request.post("https://thinking-tester-contact-list.herokuapp.com/contacts", {
+        const response = await request.post(`${BASE_URL}/contacts`, {
             headers: {
                 "Authorization": `Bearer ${token}`,
                 "Content-Type": "application/json"
@@ -63,7 +65,9 @@ test.describe('API - Manipulating users', () => {
         "country": faker.location.country()
     };
 
-    const createResponse = await request.post("https://thinking-tester-contact-list.herokuapp.com/contacts", {
+
+
+    const createResponse = await request.post(`${BASE_URL}/contacts`, {
         headers: {
             "Authorization": `Bearer ${token}`,
             "Content-Type": "application/json"
@@ -81,7 +85,7 @@ test.describe('API - Manipulating users', () => {
         "email": faker.internet.email().toLowerCase()
     };
 
-    const updateResponse = await request.put(`https://thinking-tester-contact-list.herokuapp.com/contacts/${createdUser._id}`, {
+    const updateResponse = await request.put(`${BASE_URL}/contacts/${createdUser._id}`, {
         headers: {
             "Authorization": `Bearer ${token}`,
             "Content-Type": "application/json"
@@ -111,7 +115,7 @@ test.describe('API - Manipulating users', () => {
         "country": faker.location.country()
     };
 
-    const createResponse = await request.post("https://thinking-tester-contact-list.herokuapp.com/contacts", {
+    const createResponse = await request.post(`${BASE_URL}/contacts`, {
         headers: {
             "Authorization": `Bearer ${token}`,
             "Content-Type": "application/json"
@@ -122,7 +126,7 @@ test.describe('API - Manipulating users', () => {
     const createdUser = await createResponse.json();
 
     // Delete the created user
-    const deleteResponse = await request.delete(`https://thinking-tester-contact-list.herokuapp.com/contacts/${createdUser._id}`, {
+    const deleteResponse = await request.delete(`${BASE_URL}/contacts/${createdUser._id}`, {
         headers: {
             "Authorization": `Bearer ${token}`,
             "Content-Type": "application/json"
@@ -131,7 +135,7 @@ test.describe('API - Manipulating users', () => {
     expect(deleteResponse.status()).toBe(200);
 
     // Verify the user is deleted
-    const getResponse = await request.get(`https://thinking-tester-contact-list.herokuapp.com/contacts/${createdUser._id}`, {
+    const getResponse = await request.get(`${BASE_URL}/contacts/${createdUser._id}`, {
         headers: {
             "Authorization": `Bearer ${token}`,
             "Content-Type": "application/json"

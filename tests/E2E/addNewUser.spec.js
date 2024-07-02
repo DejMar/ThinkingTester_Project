@@ -18,7 +18,7 @@ test.describe('Manipulating users', () => {
     await contactPage.clickOnSubmitButton()
     await contactPage.verifyAddedUserData()
   })
-  test.only('Update Existing User', async ({ page }) => {
+  test('Update Existing User', async ({ page }) => {
     await loginPage.openURL()
     await loginPage.registerUser()
     await contactPage.clickOnAddContacButton()

@@ -1,5 +1,6 @@
 import { faker } from '@faker-js/faker';
 import { expect } from '@playwright/test';
+
 export class ContactPage {
   constructor(page) {
     this.page = page
@@ -34,7 +35,7 @@ export class ContactPage {
     const lastName = faker.person.lastName()
     const birthday = faker.date.birthdate().toISOString().split('T')[0]
     const email = faker.internet.email({ firstName, lastName })
-    const phone = faker.phone.number("##########")
+    const phone = faker.phone.number()
     const street1 = faker.location.streetAddress(false)
     const street2 = faker.location.secondaryAddress()
     const city = faker.location.city()

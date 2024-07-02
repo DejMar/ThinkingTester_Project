@@ -96,8 +96,5 @@ export class ContactPage {
   clickOnReturnToContactListButton = async () => {
     await this.ReturnToContactList.click()
   }
-  addUserThroughAPI = async () => {
-    await this.addUserThroughAPI(this.user.firstName, this.user.lastName, this.user.birthday, this.user.email, this.user.phone, this.user.street1, this.user.street2, this.user.city, this.user.state, this.user.zipCode, this.user.country)
-  }
 }
 

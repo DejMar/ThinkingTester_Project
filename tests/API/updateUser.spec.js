@@ -49,7 +49,6 @@ test.describe('API - Manipulating users', () => {
 
     test('API - Verify Updated user', async ({ request }) => {
     const token = await loginPage.retriveToken();
-
     // First, create a new user to update
     const userData = {
         "firstName": faker.person.firstName(),
@@ -64,8 +63,6 @@ test.describe('API - Manipulating users', () => {
         "postalCode": faker.location.zipCode(),
         "country": faker.location.country()
     };
-
-
 
     const createResponse = await request.post(`${BASE_URL}/contacts`, {
         headers: {

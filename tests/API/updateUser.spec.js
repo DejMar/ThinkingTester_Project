@@ -3,7 +3,7 @@ import { ContactPage } from "../../page-object/AddContactPage";
 import { expect, test } from '@playwright/test';
 import { faker } from '@faker-js/faker/locale/en'
 
-const BASE_URL = "https://thinking-tester-contact-list.herokuapp.com";
+const BASE_URL_API = "https://thinking-tester-contact-list.herokuapp.com";
 
 test.describe('API - Manipulating users', () => {
     let loginPage
@@ -35,7 +35,7 @@ test.describe('API - Manipulating users', () => {
             "country": faker.location.country()
         };
 
-        const response = await request.post(`${BASE_URL}/contacts`, {
+        const response = await request.post(`${BASE_URL_API}/contacts`, {
             headers: {
                 "Authorization": `Bearer ${token}`,
                 "Content-Type": "application/json"
@@ -64,7 +64,7 @@ test.describe('API - Manipulating users', () => {
         "country": faker.location.country()
     };
 
-    const createResponse = await request.post(`${BASE_URL}/contacts`, {
+    const createResponse = await request.post(`${BASE_URL_API}/contacts`, {
         headers: {
             "Authorization": `Bearer ${token}`,
             "Content-Type": "application/json"
@@ -82,7 +82,7 @@ test.describe('API - Manipulating users', () => {
         "email": faker.internet.email().toLowerCase()
     };
 
-    const updateResponse = await request.put(`${BASE_URL}/contacts/${createdUser._id}`, {
+    const updateResponse = await request.put(`${BASE_URL_API}/contacts/${createdUser._id}`, {
         headers: {
             "Authorization": `Bearer ${token}`,
             "Content-Type": "application/json"
@@ -112,7 +112,7 @@ test.describe('API - Manipulating users', () => {
         "country": faker.location.country()
     };
 
-    const createResponse = await request.post(`${BASE_URL}/contacts`, {
+    const createResponse = await request.post(`${BASE_URL_API}/contacts`, {
         headers: {
             "Authorization": `Bearer ${token}`,
             "Content-Type": "application/json"
@@ -123,7 +123,7 @@ test.describe('API - Manipulating users', () => {
     const createdUser = await createResponse.json();
 
     // Delete the created user
-    const deleteResponse = await request.delete(`${BASE_URL}/contacts/${createdUser._id}`, {
+    const deleteResponse = await request.delete(`${BASE_URL_API}/contacts/${createdUser._id}`, {
         headers: {
             "Authorization": `Bearer ${token}`,
             "Content-Type": "application/json"
@@ -132,7 +132,7 @@ test.describe('API - Manipulating users', () => {
     expect(deleteResponse.status()).toBe(200);
 
     // Verify the user is deleted
-    const getResponse = await request.get(`${BASE_URL}/contacts/${createdUser._id}`, {
+    const getResponse = await request.get(`${BASE_URL_API}/contacts/${createdUser._id}`, {
         headers: {
             "Authorization": `Bearer ${token}`,
             "Content-Type": "application/json"

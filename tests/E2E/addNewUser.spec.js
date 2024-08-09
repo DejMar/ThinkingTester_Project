@@ -10,6 +10,14 @@ test.describe('Manipulating users', () => {
     contactPage = new ContactPage(page)
   })
 
+  test.afterEach(async ({ page }, testInfo) => {
+    if (testInfo.status !== 'passed') {
+      const screenshotPath = `screenshots/${testInfo.title.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.png`;
+      await page.screenshot({ path: screenshotPath, fullPage: true });
+      console.log(`Screenshot saved: ${screenshotPath}`);
+    }
+  });
+
   test('Add New User', async ({ page }) => {
     await loginPage.openURL()
     await loginPage.registerUser()

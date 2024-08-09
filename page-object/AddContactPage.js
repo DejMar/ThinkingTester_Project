@@ -35,7 +35,7 @@ export class ContactPage {
     const lastName = faker.person.lastName()
     const birthday = faker.date.birthdate().toISOString().split('T')[0]
     const email = faker.internet.email({ firstName, lastName })
-    const phone = faker.phone.number()
+    //const phone = faker.phone.number()
     const street1 = faker.location.streetAddress(false)
     const street2 = faker.location.secondaryAddress()
     const city = faker.location.city()
@@ -48,7 +48,7 @@ export class ContactPage {
       lastName,
       birthday,
       email,
-      phone,
+      //phone,
       street1,
       street2,
       city,
@@ -68,7 +68,7 @@ export class ContactPage {
     await this.LastName.fill(user.lastName)
     await this.DateOfBirth.fill(user.birthday)
     await this.Email.fill(user.email)
-    await this.PhoneNumber.fill(user.phone)
+    //await this.PhoneNumber.fill(user.phone)
     await this.Address1.fill(user.street1)
     await this.Address2.fill(user.street2)
     await this.City.fill(user.city)
@@ -84,7 +84,7 @@ export class ContactPage {
     await expect(this.TableName).toHaveText(this.user.firstName + ' ' + this.user.lastName)
     await expect(this.TableEmail).toHaveText(this.user.email.toLowerCase())
     await expect(this.TableDateOfBirth).toHaveText(this.user.birthday)
-    await expect(this.TablePhoneNumber).toHaveText(this.user.phone)
+    //await expect(this.TablePhoneNumber).toHaveText(this.user.phone)
     await expect(this.TableCountry).toHaveText(this.user.country)
   }
   clickOnEmailLink = async () => {

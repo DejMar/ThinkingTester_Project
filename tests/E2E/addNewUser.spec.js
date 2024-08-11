@@ -1,24 +1,24 @@
 import { LoginPage } from "../../page-object/LoginPage";
 import { ContactPage } from "../../page-object/AddContactPage";
 import { test } from '@playwright/test';
+import { SharedSteps } from "../../helper/sharedSteps";
 
 test.describe('Manipulating users', () => {
   let loginPage
   let contactPage
+  let sharedSteps
+
   test.beforeEach(async ({ page }) => {
     loginPage = new LoginPage(page)
     contactPage = new ContactPage(page)
+    sharedSteps = new SharedSteps(page)
   })
 
   test.afterEach(async ({ page }, testInfo) => {
-    if (testInfo.status !== 'passed') {
-      const screenshotPath = `screenshots/${testInfo.title.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.png`;
-      await page.screenshot({ path: screenshotPath, fullPage: true });
-      console.log(`Screenshot saved: ${screenshotPath}`);
-    }
+    await sharedSteps.takeScreenshotOnFailure(page, testInfo);
   });
 
-  test('Add New User', async ({ page }) => {
+  test('TC01 - Add New User', async ({ page }) => {
     await loginPage.openURL()
     await loginPage.registerUser()
     await contactPage.clickOnAddContacButton()
@@ -26,7 +26,7 @@ test.describe('Manipulating users', () => {
     await contactPage.clickOnSubmitButton()
     await contactPage.verifyAddedUserData()
   })
-  test('Update Existing User', async ({ page }) => {
+  test('TC02 - Update Existing User', async ({ page }) => {
     await loginPage.openURL()
     await loginPage.registerUser()
     await contactPage.clickOnAddContacButton()

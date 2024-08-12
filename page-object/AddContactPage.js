@@ -28,6 +28,7 @@ export class ContactPage {
     this.ReturnToContactList = page.getByRole('button', { name: 'Return to Contact List' })
     this.EditButton = page.getByRole('button', { name: 'Edit' })
     this.SubmitButton = page.getByRole('button', { name: 'Submit' })
+    this.DeleteButton = page.getByRole('button', { name: 'Delete Contact' })
   }
 
   createRandomUser = async () => {
@@ -78,5 +79,20 @@ export class ContactPage {
 
   clickOnReturnToContactListButton = async () => {
     await this.ReturnToContactList.click()
+  }
+  
+  clickOnDeleteButton = async () => {
+    await this.page.on('dialog', async dialog => {
+      await dialog.accept();
+    });
+    await this.DeleteButton.click();
+  }
+
+  verifyTableIsEmpty = async () => {
+    await expect(this.TableName).toHaveCount(0);
+    await expect(this.TableEmail).toHaveCount(0);
+    await expect(this.TableDateOfBirth).toHaveCount(0);
+    await expect(this.TablePhoneNumber).toHaveCount(0);
+    await expect(this.TableCountry).toHaveCount(0);
   }
 }

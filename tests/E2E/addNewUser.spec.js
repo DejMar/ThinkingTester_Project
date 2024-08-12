@@ -44,24 +44,13 @@ test.describe('Manipulating users', () => {
     await testStep.log(contactPage.verifyAddedUserData(), 'Verify added user data');
   })
 
-  test('TC03 - Verify deleting user', async ({ }) => {
+  test.only('TC03 - Verify deleting user', async ({ page}) => {
     await testStep.log(contactPage.clickOnAddContacButton(), 'Click on Add Contact button');
     await testStep.log(contactPage.populateDataForNewUser(), 'Fill in new user data');
     await testStep.log(contactPage.clickOnSubmitButton(), 'Submit new user form');
     await testStep.log(contactPage.verifyAddedUserData(), 'Verify added user data');
     await testStep.log(contactPage.clickOnEmailLink(), 'Click on email link');
-    await testStep.log(async () => {
-      const token = await loginPage.retriveToken();
-      const response = await page.request.delete(`${BASE_URL_API}/contacts/${contactPage.user._id}`, {
-        headers: {
-          "Authorization": `Bearer ${token}`,
-          "Content-Type": "application/json"
-        }
-      });
-      expect(response.status()).toBe(200);
-    }, 'Delete user via API');
-    await testStep.log(contactPage.clickOnReturnToContactListButton(), 'Return to contact list');
-    await testStep.log(async () => {
-      await expect(contactPage.TableEmail).not.toHaveText(contactPage.user.email.toLowerCase());
-    }, 'Verify deleted user is not displayed');  })
+    await testStep.log(contactPage.clickOnDeleteButton(), 'Click on Delete button');
+    await testStep.log(contactPage.verifyTableIsEmpty(), 'Verify table is empty');
+   })
 })

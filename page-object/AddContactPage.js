@@ -4,6 +4,7 @@ import { SharedSteps } from '../helper/sharedSteps';
 export class ContactPage {
   constructor(page) {
     this.page = page
+    this.user = {};
     //Input fields
     this.FirstName = page.locator("//input[@id='firstName']")
     this.LastName = page.locator("//input[@id='lastName']")
@@ -22,7 +23,6 @@ export class ContactPage {
     this.TableEmail = page.locator("//*[@id='myTable']/tr/td[4]")
     this.TablePhoneNumber = page.locator('//*[@id="myTable"]/tr/td[5]')
     this.TableCountry = page.locator('//*[@id="myTable"]/tr/td[8]')
-    this.user = {};
     //Buttons
     this.AddContactButton = page.getByRole('button', { name: 'Add a New Contact' })
     this.ReturnToContactList = page.getByRole('button', { name: 'Return to Contact List' })
@@ -35,10 +35,6 @@ export class ContactPage {
     const sharedSteps = new SharedSteps(this.page);
     this.user = sharedSteps.generateUserData();
     return this.user;
-  }
-
-  clickOnAddContacButton = async () => {
-    await this.AddContactButton.click()
   }
 
   populateDataForNewUser = async () => {
@@ -56,17 +52,13 @@ export class ContactPage {
     await this.Country.fill(user.country)
   }
 
+  clickOnAddContacButton = async () => {
+    await this.AddContactButton.click()
+  }
+
   clickOnSubmitButton = async () => {
     await this.SubmitButton.waitFor()
     await this.SubmitButton.click()
-  }
-
-  verifyAddedUserData = async () => {
-    await expect(this.TableName).toHaveText(this.user.firstName + ' ' + this.user.lastName)
-    await expect(this.TableEmail).toHaveText(this.user.email.toLowerCase())
-    await expect(this.TableDateOfBirth).toHaveText(this.user.birthdate)
-    await expect(this.TablePhoneNumber).toHaveText(this.user.phone)
-    await expect(this.TableCountry).toHaveText(this.user.country)
   }
 
   clickOnEmailLink = async () => {
@@ -94,5 +86,13 @@ export class ContactPage {
     await expect(this.TableDateOfBirth).toHaveCount(0);
     await expect(this.TablePhoneNumber).toHaveCount(0);
     await expect(this.TableCountry).toHaveCount(0);
+  }
+
+  verifyAddedUserData = async () => {
+    await expect(this.TableName).toHaveText(this.user.firstName + ' ' + this.user.lastName)
+    await expect(this.TableEmail).toHaveText(this.user.email.toLowerCase())
+    await expect(this.TableDateOfBirth).toHaveText(this.user.birthdate)
+    await expect(this.TablePhoneNumber).toHaveText(this.user.phone)
+    await expect(this.TableCountry).toHaveText(this.user.country)
   }
 }

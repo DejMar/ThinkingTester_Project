@@ -44,7 +44,7 @@ test.describe('Manipulating users', () => {
     await testStep.log(contactPage.verifyAddedUserData(), 'Verify added user data');
   })
 
-  test.only('TC03 - Verify deleting user', async ({ page}) => {
+  test('TC03 - Verify deleting user', async ({ }) => {
     await testStep.log(contactPage.clickOnAddContacButton(), 'Click on Add Contact button');
     await testStep.log(contactPage.populateDataForNewUser(), 'Fill in new user data');
     await testStep.log(contactPage.clickOnSubmitButton(), 'Submit new user form');

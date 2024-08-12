@@ -42,7 +42,6 @@ export class ContactPage {
 
   populateDataForNewUser = async () => {
     const user = await this.createRandomUser()
-    console.log(user.phone)
     await this.FirstName.fill(user.firstName)
     await this.LastName.fill(user.lastName)
     await this.DateOfBirth.fill(user.birthdate)

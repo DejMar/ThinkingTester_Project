@@ -1,4 +1,5 @@
 import { faker } from '@faker-js/faker/locale/en'
+import fs from 'fs/promises';
 
 export class SharedSteps {
     constructor(page) {
@@ -28,4 +29,11 @@ export class SharedSteps {
             "country": faker.location.country()
         };
     }
+
+    async saveTestSteps(testTitle, steps) {
+        const testName = testTitle.replace(/\s+/g, '_');
+        const testResultsDir = 'test-results';
+        await fs.mkdir(testResultsDir, { recursive: true });
+        await fs.writeFile(`${testResultsDir}/${testName}_steps.txt`, steps.join('\n'));
+      }
 }

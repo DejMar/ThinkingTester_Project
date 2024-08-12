@@ -26,6 +26,7 @@ test.describe('Manipulating users', () => {
     await contactPage.clickOnSubmitButton()
     await contactPage.verifyAddedUserData()
   })
+
   test('TC02 - Update Existing User', async ({ page }) => {
     await loginPage.openURL()
     await loginPage.registerUser()
@@ -39,5 +40,16 @@ test.describe('Manipulating users', () => {
     await contactPage.clickOnSubmitButton()
     await contactPage.clickOnReturnToContactListButton()
     await contactPage.verifyAddedUserData()
+  })
+  
+  test('TC03 - Verify deleting user', async ({ page }) => {
+    await loginPage.openURL()
+    await loginPage.registerUser()
+    await contactPage.clickOnAddContacButton()
+    await contactPage.populateDataForNewUser()
+    await contactPage.clickOnSubmitButton()
+    await contactPage.verifyAddedUserData()
+    await contactPage.clickOnEmailLink()
+
   })
 })

@@ -1,5 +1,6 @@
 import { LoginPage } from "../../page-object/LoginPage";
 import { ContactPage } from "../../page-object/AddContactPage";
+import { SharedSteps } from "../../helper/sharedSteps";
 import { expect, test } from '@playwright/test';
 import { faker } from '@faker-js/faker/locale/en'
 
@@ -8,9 +9,12 @@ const BASE_URL_API = "https://thinking-tester-contact-list.herokuapp.com";
 test.describe('API - Manipulating users', () => {
     let loginPage
     let contactPage
+    let sharedSteps
+
     test.beforeEach(async ({ page }) => {
         loginPage = new LoginPage(page)
         contactPage = new ContactPage(page)
+        sharedSteps = new SharedSteps(page)
     })
 
     test('API - Get Token', async ({ page }) => {
@@ -18,22 +22,9 @@ test.describe('API - Manipulating users', () => {
         console.log(token)
     })
 
-    test('API - Verify Added user', async ({ request }) => {
+    test('API01 - Verify Added user', async ({ request }) => {
         const token = await loginPage.retriveToken();
-
-        const userData = {
-            "firstName": faker.person.firstName(),
-            "lastName": faker.person.lastName(),
-            "birthdate": faker.date.birthdate().toISOString().split('T')[0],
-            "email": faker.internet.email().toLowerCase(),
-            "phone": faker.phone.number(),
-            "street1": faker.location.streetAddress(),
-            "street2": faker.location.streetAddress(),
-            "city": faker.location.city(),
-            "stateProvince": faker.location.state(),
-            "postalCode": faker.location.zipCode(),
-            "country": faker.location.country()
-        };
+        const userData = await sharedSteps.generateUserData();
 
         const response = await request.post(`${BASE_URL_API}/contacts`, {
             headers: {
@@ -47,22 +38,9 @@ test.describe('API - Manipulating users', () => {
         expect(responseBody).toEqual(expect.objectContaining(userData));
     })
 
-    test('API - Verify Updated user', async ({ request }) => {
+    test('API02 - Verify Updated user', async ({ request }) => {
     const token = await loginPage.retriveToken();
-    // First, create a new user to update
-    const userData = {
-        "firstName": faker.person.firstName(),
-        "lastName": faker.person.lastName(),
-        "birthdate": faker.date.birthdate().toISOString().split('T')[0],
-        "email": faker.internet.email().toLowerCase(),
-        "phone": faker.phone.number(),
-        "street1": faker.location.streetAddress(),
-        "street2": faker.location.streetAddress(),
-        "city": faker.location.city(),
-        "stateProvince": faker.location.state(),
-        "postalCode": faker.location.zipCode(),
-        "country": faker.location.country()
-    };
+    const userData = await sharedSteps.generateUserData();
 
     const createResponse = await request.post(`${BASE_URL_API}/contacts`, {
         headers: {
@@ -94,23 +72,9 @@ test.describe('API - Manipulating users', () => {
     expect(updatedUser).toEqual(expect.objectContaining(updatedUserData));
     })
 
-    test('API - Verify Deleted user', async ({ request }) => {
+    test('API03 - Verify Deleted user', async ({ request }) => {
     const token = await loginPage.retriveToken();
-
-    // First, create a new user to delete
-    const userData = {
-        "firstName": faker.person.firstName(),
-        "lastName": faker.person.lastName(),
-        "birthdate": faker.date.birthdate().toISOString().split('T')[0],
-        "email": faker.internet.email().toLowerCase(),
-        "phone": faker.phone.number(),
-        "street1": faker.location.streetAddress(),
-        "street2": faker.location.streetAddress(),
-        "city": faker.location.city(),
-        "stateProvince": faker.location.state(),
-        "postalCode": faker.location.zipCode(),
-        "country": faker.location.country()
-    };
+    const userData = await sharedSteps.generateUserData();
 
     const createResponse = await request.post(`${BASE_URL_API}/contacts`, {
         headers: {

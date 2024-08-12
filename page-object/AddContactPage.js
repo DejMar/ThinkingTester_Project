@@ -42,11 +42,12 @@ export class ContactPage {
 
   populateDataForNewUser = async () => {
     const user = await this.createRandomUser()
+    console.log(user.phone)
     await this.FirstName.fill(user.firstName)
     await this.LastName.fill(user.lastName)
     await this.DateOfBirth.fill(user.birthdate)
     await this.Email.fill(user.email)
-    //await this.PhoneNumber.fill(user.phone)
+    await this.PhoneNumber.fill(user.phone)
     await this.Address1.fill(user.street1)
     await this.Address2.fill(user.street2)
     await this.City.fill(user.city)
@@ -64,7 +65,7 @@ export class ContactPage {
     await expect(this.TableName).toHaveText(this.user.firstName + ' ' + this.user.lastName)
     await expect(this.TableEmail).toHaveText(this.user.email.toLowerCase())
     await expect(this.TableDateOfBirth).toHaveText(this.user.birthdate)
-    //await expect(this.TablePhoneNumber).toHaveText(this.user.phone)
+    await expect(this.TablePhoneNumber).toHaveText(this.user.phone)
     await expect(this.TableCountry).toHaveText(this.user.country)
   }
 

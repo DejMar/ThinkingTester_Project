@@ -12,14 +12,14 @@ export class SharedSteps {
             console.log(`Screenshot saved: ${screenshotPath}`);
         }
     }
-    
+
     generateUserData() {
         return {
             "firstName": faker.person.firstName(),
             "lastName": faker.person.lastName(),
             "birthdate": faker.date.birthdate().toISOString().split('T')[0],
             "email": faker.internet.email().toLowerCase(),
-            "phone": faker.phone.number(),
+            "phone": faker.string.numeric(9),
             "street1": faker.location.streetAddress(),
             "street2": faker.location.streetAddress(),
             "city": faker.location.city(),

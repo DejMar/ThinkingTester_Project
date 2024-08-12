@@ -1,4 +1,3 @@
-import { faker } from '@faker-js/faker';
 import { expect } from '@playwright/test';
 import { SharedSteps } from '../helper/sharedSteps';
 
@@ -40,6 +39,7 @@ export class ContactPage {
   clickOnAddContacButton = async () => {
     await this.AddContactButton.click()
   }
+
   populateDataForNewUser = async () => {
     const user = await this.createRandomUser()
     await this.FirstName.fill(user.firstName)
@@ -54,10 +54,12 @@ export class ContactPage {
     await this.ZipOrPostalCode.fill(user.postalCode)
     await this.Country.fill(user.country)
   }
+
   clickOnSubmitButton = async () => {
     await this.SubmitButton.waitFor()
     await this.SubmitButton.click()
   }
+
   verifyAddedUserData = async () => {
     await expect(this.TableName).toHaveText(this.user.firstName + ' ' + this.user.lastName)
     await expect(this.TableEmail).toHaveText(this.user.email.toLowerCase())
@@ -65,14 +67,16 @@ export class ContactPage {
     //await expect(this.TablePhoneNumber).toHaveText(this.user.phone)
     await expect(this.TableCountry).toHaveText(this.user.country)
   }
+
   clickOnEmailLink = async () => {
     await this.TableEmail.click()
   }
+
   clickOnEditButton = async () => {
     await this.EditButton.click()
   }
+
   clickOnReturnToContactListButton = async () => {
     await this.ReturnToContactList.click()
   }
 }
-

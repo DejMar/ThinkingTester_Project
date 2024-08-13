@@ -54,7 +54,7 @@ test.describe('Manipulating users', () => {
     await testStep.log(contactPage.verifyTableIsEmpty(), 'Verify table is empty');
    })
 
-   test('TC04 Verify adding multiple users', async ({  }) => {
+   test('TC04 Verify adding multiple users', async ({ }) => {
     const numberOfUsers = 9;
     const users = await testStep.log(contactPage.createMultipleRandomUsers(numberOfUsers), `Create ${numberOfUsers} random users`);
     await testStep.log(contactPage.verifyMultipleUsersInTable(users), `Verify ${numberOfUsers} users are added to the table`);

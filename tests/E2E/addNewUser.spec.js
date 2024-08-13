@@ -57,8 +57,6 @@ test.describe('Manipulating users', () => {
    test.only('TC04 Verify adding multiple users', async ({ page }) => {
     const numberOfUsers = 9; // You can adjust this number as needed
     const users = await testStep.log(contactPage.createMultipleRandomUsers(numberOfUsers), `Create ${numberOfUsers} random users`);
-    await page.pause()
     await testStep.log(contactPage.verifyMultipleUsersInTable(users), `Verify ${numberOfUsers} users are added to the table`);
-    //await testStep.log(contactPage.clickOnReturnToContactListButton(), 'Return to contact list');
    })
 })

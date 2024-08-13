@@ -34,6 +34,6 @@ export class SharedSteps {
         const testName = testTitle.replace(/\s+/g, '_');
         const testResultsDir = 'test-results';
         await fs.mkdir(testResultsDir, { recursive: true });
-        await fs.writeFile(`${testResultsDir}/${testName}_steps.txt`, steps.join('\n'));
+        await fs.writeFile(`${testResultsDir}/${testName}_steps_${new Date().toISOString().split('T')[0]}.txt`, steps.join('\n'));
       }
 }

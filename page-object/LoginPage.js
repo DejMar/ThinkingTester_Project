@@ -12,6 +12,10 @@ export class LoginPage {
         this.signUpFirstName = page.getByPlaceholder('First Name')
         this.signUpLastName = page.getByPlaceholder('Last Name')
         this.signUpPassword = page.getByPlaceholder('Password')
+        this.logoutButton = page.getByRole('button', { name: 'Logout' })
+        this.emailField = page.getByPlaceholder('Email')
+        this.passwordField = page.getByPlaceholder('Password')
+
     }
     openURL = async () => {
         await this.page.goto('/')
@@ -24,6 +28,21 @@ export class LoginPage {
         await this.emailInput.fill(loginDetails.email)
         await this.signUpPassword.fill(loginDetails.password)
         await this.submitButton.click()
+    }
+
+    loginWithRegisteredUser = async () => {
+        await this.emailField.fill(loginDetails.email)
+        await this.passwordField.fill(loginDetails.password)
+        await this.submitButton.click()
+    }
+
+    confirmLogoutButtonDisplayed = async () => {
+        await this.logoutButton.waitFor({ state: 'visible' });
+        return this.logoutButton.isVisible();
+    }
+
+    clickOnLogoutButton = async () => {
+        await this.logoutButton.click()
     }
 
     retriveToken = async () => {

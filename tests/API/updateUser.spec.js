@@ -80,6 +80,17 @@ test.describe('API - Manipulating users', () => {
         expect(updateResponse.status()).toBe(200);
         const updatedUser = await updateResponse.json();
         expect(updatedUser).toEqual(expect.objectContaining(updatedUserData));
+
+        // Verify updated user is saved
+        const getResponse = await request.get(`${BASE_URL_API}/contacts/${createdUser._id}`, {
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json"
+            }
+        });
+        expect(getResponse.status()).toBe(200);
+        const savedUser = await getResponse.json();
+        expect(savedUser).toEqual(expect.objectContaining(updatedUserData));
     })
 
     test('API03 - Verify Deleted user', async ({ request }) => {

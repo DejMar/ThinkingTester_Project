@@ -25,14 +25,14 @@ test.describe('Manipulating users', () => {
   });
 
   test('TC01 Add New User', async ({ }) => {
-    await testStep.log(contactPage.clickOnAddContacButton(), 'Click on Add Contact button');
+    await testStep.log(contactPage.clickOnAddContactButton(), 'Click on Add Contact button');
     await testStep.log(contactPage.populateDataForNewUser(), 'Fill in new user data');
     await testStep.log(contactPage.clickOnSubmitButton(), 'Submit new user form');
     await testStep.log(contactPage.verifyAddedUserData(), 'Verify added user data');    
   })
 
   test('TC02 Update Existing User', async ({ }) => {
-    await testStep.log(contactPage.clickOnAddContacButton(), 'Click on Add Contact button');
+    await testStep.log(contactPage.clickOnAddContactButton(), 'Click on Add Contact button');
     await testStep.log(contactPage.populateDataForNewUser(), 'Fill in new user data');
     await testStep.log(contactPage.clickOnSubmitButton(), 'Submit new user form');
     await testStep.log(contactPage.verifyAddedUserData(), 'Verify added user data');
@@ -45,12 +45,20 @@ test.describe('Manipulating users', () => {
   })
 
   test('TC03 Verify deleting user', async ({ }) => {
-    await testStep.log(contactPage.clickOnAddContacButton(), 'Click on Add Contact button');
+    await testStep.log(contactPage.clickOnAddContactButton(), 'Click on Add Contact button');
     await testStep.log(contactPage.populateDataForNewUser(), 'Fill in new user data');
     await testStep.log(contactPage.clickOnSubmitButton(), 'Submit new user form');
     await testStep.log(contactPage.verifyAddedUserData(), 'Verify added user data');
     await testStep.log(contactPage.clickOnEmailLink(), 'Click on email link');
     await testStep.log(contactPage.clickOnDeleteButton(), 'Click on Delete button');
     await testStep.log(contactPage.verifyTableIsEmpty(), 'Verify table is empty');
+   })
+
+   test.only('TC04 Verify adding multiple users', async ({ page }) => {
+    const numberOfUsers = 9; // You can adjust this number as needed
+    const users = await testStep.log(contactPage.createMultipleRandomUsers(numberOfUsers), `Create ${numberOfUsers} random users`);
+    await page.pause()
+    await testStep.log(contactPage.verifyMultipleUsersInTable(users), `Verify ${numberOfUsers} users are added to the table`);
+    //await testStep.log(contactPage.clickOnReturnToContactListButton(), 'Return to contact list');
    })
 })

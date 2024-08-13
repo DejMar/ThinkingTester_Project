@@ -52,7 +52,43 @@ export class ContactPage {
     await this.Country.fill(user.country)
   }
 
-  clickOnAddContacButton = async () => {
+  createMultipleRandomUsers = async (numberOfUsers) => {
+    const users = [];
+    for (let i = 0; i < numberOfUsers; i++) {
+      await this.clickOnAddContactButton();
+      await this.populateDataForNewUser();
+      await this.clickOnSubmitButton();
+      users.push(this.user);
+    }
+    return users;
+  }
+
+  verifyMultipleUsersInTable = async (users) => {
+    // Sort users by last name
+    const sortedUsers = users.sort((a, b) => a.lastName.localeCompare(b.lastName));
+
+    for (let i = 0; i < sortedUsers.length; i++) {
+      const user = sortedUsers[i];
+      await this.TableName.nth(i).waitFor({ state: 'visible' });
+      await expect(this.TableName.nth(i)).toHaveText(user.firstName + ' ' + user.lastName);
+      await expect(this.TableEmail.nth(i)).toHaveText(user.email.toLowerCase());
+      await expect(this.TableDateOfBirth.nth(i)).toHaveText(user.birthdate);
+      await expect(this.TablePhoneNumber.nth(i)).toHaveText(user.phone);
+      await expect(this.TableCountry.nth(i)).toHaveText(user.country);
+    }
+
+    // Verify the list is sorted as populated
+    const tableNames = await this.TableName.allInnerTexts();
+    const sortedTableNames = tableNames.slice().sort((a, b) => {
+      const lastNameA = a.split(' ')[1];
+      const lastNameB = b.split(' ')[1];
+      return lastNameA.localeCompare(lastNameB);
+    });
+
+    expect(tableNames).toEqual(sortedTableNames);
+  }
+
+  clickOnAddContactButton = async () => {
     await this.AddContactButton.click()
   }
 

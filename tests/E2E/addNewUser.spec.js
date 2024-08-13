@@ -24,14 +24,14 @@ test.describe('Manipulating users', () => {
     await sharedSteps.saveTestSteps(testInfo.title, testStep.getSteps());
   });
 
-  test('TC01 - Add New User', async ({ }) => {
+  test('TC01 Add New User', async ({ }) => {
     await testStep.log(contactPage.clickOnAddContacButton(), 'Click on Add Contact button');
     await testStep.log(contactPage.populateDataForNewUser(), 'Fill in new user data');
     await testStep.log(contactPage.clickOnSubmitButton(), 'Submit new user form');
     await testStep.log(contactPage.verifyAddedUserData(), 'Verify added user data');    
   })
 
-  test('TC02 - Update Existing User', async ({ }) => {
+  test('TC02 Update Existing User', async ({ }) => {
     await testStep.log(contactPage.clickOnAddContacButton(), 'Click on Add Contact button');
     await testStep.log(contactPage.populateDataForNewUser(), 'Fill in new user data');
     await testStep.log(contactPage.clickOnSubmitButton(), 'Submit new user form');
@@ -44,7 +44,7 @@ test.describe('Manipulating users', () => {
     await testStep.log(contactPage.verifyAddedUserData(), 'Verify added user data');
   })
 
-  test('TC03 - Verify deleting user', async ({ }) => {
+  test('TC03 Verify deleting user', async ({ }) => {
     await testStep.log(contactPage.clickOnAddContacButton(), 'Click on Add Contact button');
     await testStep.log(contactPage.populateDataForNewUser(), 'Fill in new user data');
     await testStep.log(contactPage.clickOnSubmitButton(), 'Submit new user form');

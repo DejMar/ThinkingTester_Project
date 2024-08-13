@@ -19,16 +19,16 @@ test.describe('Login tests', () => {
     await sharedSteps.saveTestSteps(testInfo.title, testStep.getSteps());
   });
 
-  test('TC04 - Login to page', async ({ }) => {
+  test('TC04 Login to page', async ({ }) => {
     await testStep.log(loginPage.openURL(), 'Open the login URL')
   })
 
-  test('TC05 - Register user', async ({ }) => {
+  test('TC05 Register user', async ({ }) => {
     await testStep.log(loginPage.openURL(), 'Open the login URL')
     await testStep.log(loginPage.registerUser(), 'Register a new user')
   })
 
-  test.only('TC06 - Login with newly registered user', async ({ }) => {
+  test.only('TC06 Login with newly registered user', async ({ }) => {
     await testStep.log(loginPage.openURL(), 'Open the login URL')
     await testStep.log(loginPage.registerUser(), 'Register a new user')
     await testStep.log(loginPage.clickOnLogoutButton(), 'Click on logout button')

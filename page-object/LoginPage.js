@@ -15,7 +15,6 @@ export class LoginPage {
         this.logoutButton = page.getByRole('button', { name: 'Logout' })
         this.emailField = page.getByPlaceholder('Email')
         this.passwordField = page.getByPlaceholder('Password')
-
     }
     openURL = async () => {
         await this.page.goto('/')

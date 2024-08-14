@@ -3,6 +3,7 @@ import { loginDetails } from "../../data/userData.js"
 import { test } from '@playwright/test'
 import { SharedSteps } from "../../helper/sharedSteps"
 import { TestStep } from "../../helper/TestStep"
+import { warningMessages } from "../../data/messages.js"
 
 test.describe('Login tests', () => {
   let loginPage
@@ -41,18 +42,18 @@ test.describe('Login tests', () => {
   test('TC08 Verify invalid login message is displayed', async ({ }) => {
     await testStep.log(loginPage.openURL(), 'Open the login URL')
     await testStep.log(loginPage.loginWithRegisteredUser(loginDetails.invalidEmail, loginDetails.invalidPassword), 'Login with invalid credentials')
-    await testStep.log(loginPage.verifyInvalidCredentialsMessage(), 'Verify invalid credentials message is displayed')
+    await testStep.log(loginPage.verifyInvalidCredentialsMessage(warningMessages.invalidCredentials), 'Verify invalid credentials message is displayed')
   })
 
   test('TC09 Verify invalid email message is displayed', async ({ }) => {
     await testStep.log(loginPage.openURL(), 'Open the login URL')
     await testStep.log(loginPage.registerUser(loginDetails.firstName, loginDetails.lastName, loginDetails.invalidEmail, loginDetails.password), 'Register user with invalid email')
-    await testStep.log(loginPage.verifyInvalidEmailMessage(), 'Verify invalid email message is displayed')
+    await testStep.log(loginPage.verifyInvalidCredentialsMessage(warningMessages.invalidEmail), 'Verify invalid email message is displayed')
   })
 
   test('TC10 Verify invalid password message is displayed', async ({ }) => {
     await testStep.log(loginPage.openURL(), 'Open the login URL')
     await testStep.log(loginPage.registerUser(loginDetails.firstName, loginDetails.lastName, loginDetails.email, loginDetails.invalidPassword), 'Register userwith invalid password')
-    await testStep.log(loginPage.verifyInvalidPasswordMessage(), 'Verify invalid passeord message is displayed')
+    await testStep.log(loginPage.verifyInvalidCredentialsMessage(warningMessages.invalidPassword), 'Verify invalid passeord message is displayed')
   })
 })

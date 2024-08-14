@@ -38,19 +38,9 @@ export class LoginPage {
         await this.submitButton.click()
     }
 
-    verifyInvalidCredentialsMessage = async () => {
+    verifyInvalidCredentialsMessage = async (message) => {
         const errorElement = this.page.locator('span#error');
-        await expect(errorElement).toHaveText(warningMessages.invalidCredentials);
-    }
-
-    verifyInvalidEmailMessage = async () => {
-        const errorElement = this.page.locator('span#error');
-        await expect(errorElement).toHaveText(warningMessages.invalidEmail);
-    }
-
-    verifyInvalidPasswordMessage = async () => {
-        const errorElement = this.page.locator('span#error');
-        await expect(errorElement).toHaveText(warningMessages.invalidPassword);
+        await expect(errorElement).toHaveText(message);
     }
 
     confirmLogoutButtonDisplayed = async () => {

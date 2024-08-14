@@ -23,42 +23,18 @@ export class LoginPage {
         await this.page.goto('/')
     }
 
-    registerUser = async () => {
+    registerUser = async (firstName, lastName, email, password) => {
         await this.signUpButton.click()
-        await this.signUpFirstName.fill(loginDetails.firstName)
-        await this.signUpLastName.fill(loginDetails.lastName)
-        await this.emailInput.fill(loginDetails.email)
-        await this.signUpPassword.fill(loginDetails.password)
+        await this.signUpFirstName.fill(firstName)
+        await this.signUpLastName.fill(lastName)
+        await this.emailInput.fill(email)
+        await this.signUpPassword.fill(password)
         await this.submitButton.click()
     }
 
-    registerUserWithInvalidEmail = async () => {
-        await this.signUpButton.click()
-        await this.signUpFirstName.fill(loginDetails.firstName)
-        await this.signUpLastName.fill(loginDetails.lastName)
-        await this.emailInput.fill(loginDetails.invalidEmail)
-        await this.signUpPassword.fill(loginDetails.password)
-        await this.submitButton.click()
-    }
-
-    registerUserWithInvalidPassword = async () => {
-        await this.signUpButton.click()
-        await this.signUpFirstName.fill(loginDetails.firstName)
-        await this.signUpLastName.fill(loginDetails.lastName)
-        await this.emailInput.fill(loginDetails.email)
-        await this.signUpPassword.fill(loginDetails.invalidPassword)
-        await this.submitButton.click()
-    }
-
-    loginWithRegisteredUser = async () => {
-        await this.emailField.fill(loginDetails.email)
-        await this.passwordField.fill(loginDetails.password)
-        await this.submitButton.click()
-    }
-
-    loginWithInvalidCredentials = async () => {
-        await this.emailField.fill(loginDetails.invalidEmail)
-        await this.passwordField.fill(loginDetails.invalidPassword)
+    loginWithRegisteredUser = async (email, password) => {
+        await this.emailField.fill(email)
+        await this.passwordField.fill(password)
         await this.submitButton.click()
     }
 

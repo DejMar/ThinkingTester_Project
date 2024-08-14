@@ -28,7 +28,8 @@ test.describe('Login tests', () => {
 
   test('TC06 Register user', async ({ }) => {
     await testStep.log(loginPage.openURL(), 'Open the login URL')
-    await testStep.log(loginPage.registerUser(), 'Register a new user')
+    await testStep.log(loginPage.registerUser(loginDetails.firstName, loginDetails.lastName, loginDetails.email, loginDetails.password), 'Register a new user')
+    await testStep.log(loginPage.confirmLogoutButtonDisplayed(), 'Confirm logout button is displayed')
   })
 
   test('TC07 Login with newly registered user', async ({ }) => {

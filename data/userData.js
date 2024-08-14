@@ -6,5 +6,7 @@ export const loginDetails = {
     middleName: faker.person.middleName(),
     lastName: faker.person.lastName(),
     id: faker.finance.accountNumber(),
-    email: faker.internet.email()
+    email: faker.internet.email(),
+    invalidEmail: 'mail',
+    invalidPassword: 'pass'
 }

@@ -35,4 +35,22 @@ test.describe('Login tests', () => {
     await testStep.log(loginPage.loginWithRegisteredUser(), 'Login with registered user')
     await testStep.log(loginPage.confirmLogoutButtonDisplayed(), 'Confirm logout button is displayed')
   })
+
+  test('TC08 Verify invalid login message is displayed', async ({ }) => {
+    await testStep.log(loginPage.openURL(), 'Open the login URL')
+    await testStep.log(loginPage.loginWithInvalidCredentials(), 'Login with invalid credentials')
+    await testStep.log(loginPage.verifyInvalidCredentialsMessage(), 'Verify invalid credentials message is displayed')
+  })
+
+  test('TC09 Verify invalid email message is displayed', async ({ }) => {
+    await testStep.log(loginPage.openURL(), 'Open the login URL')
+    await testStep.log(loginPage.registerUserWithInvalidEmail(), 'Register user with invalid email')
+    await testStep.log(loginPage.verifyInvalidEmailMessage(), 'Verify invalid email message is displayed')
+  })
+
+  test('TC10 Verify invalid password message is displayed', async ({ }) => {
+    await testStep.log(loginPage.openURL(), 'Open the login URL')
+    await testStep.log(loginPage.registerUserWithInvalidPassword(), 'Register userwith invalid password')
+    await testStep.log(loginPage.verifyInvalidPasswordMessage(), 'Verify invalid passeord message is displayed')
+  })
 })

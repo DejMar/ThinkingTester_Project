@@ -18,6 +18,7 @@ export class LoginPage {
         this.logoutButton = page.getByRole('button', { name: 'Logout' })
         this.emailField = page.getByPlaceholder('Email')
         this.passwordField = page.getByPlaceholder('Password')
+        this.errorElement = page.locator('span#error');
     }
     openURL = async () => {
         await this.page.goto('/')
@@ -39,8 +40,7 @@ export class LoginPage {
     }
 
     verifyInvalidCredentialsMessage = async (message) => {
-        const errorElement = this.page.locator('span#error');
-        await expect(errorElement).toHaveText(message);
+        await expect(this.errorElement).toHaveText(message);
     }
 
     confirmLogoutButtonDisplayed = async () => {

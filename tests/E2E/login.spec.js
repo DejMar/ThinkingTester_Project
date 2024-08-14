@@ -1,8 +1,8 @@
-import { LoginPage } from "../../page-object/LoginPage"
-import { loginDetails } from "../../data/userData.js"
 import { test } from '@playwright/test'
+import { LoginPage } from "../../page-object/LoginPage"
 import { SharedSteps } from "../../helper/sharedSteps"
 import { TestStep } from "../../helper/TestStep"
+import { loginDetails } from "../../data/userData.js"
 import { warningMessages } from "../../data/messages.js"
 
 test.describe('Login tests', () => {

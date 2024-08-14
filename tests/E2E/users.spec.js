@@ -1,6 +1,6 @@
+import { test } from '@playwright/test';
 import { LoginPage } from "../../page-object/LoginPage";
 import { ContactPage } from "../../page-object/AddContactPage";
-import { test } from '@playwright/test';
 import { SharedSteps } from "../../helper/sharedSteps";
 import { TestStep } from "../../helper/TestStep";
 

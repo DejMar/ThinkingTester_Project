@@ -21,6 +21,7 @@ test.describe('Login tests', () => {
 
   test('TC05 Login to page', async ({ }) => {
     await testStep.log(loginPage.openURL(), 'Open the login URL')
+    //TODO Verify Homepage 
   })
 
   test('TC06 Register user', async ({ }) => {

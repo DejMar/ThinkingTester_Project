@@ -53,7 +53,7 @@ test.describe('Login tests', () => {
 
   test('TC10 Verify invalid password message is displayed', async ({ }) => {
     await testStep.log(loginPage.openURL(), 'Open the login URL')
-    await testStep.log(loginPage.registerUser(loginDetails.firstName, loginDetails.lastName, loginDetails.email, loginDetails.invalidPassword), 'Register userwith invalid password')
-    await testStep.log(loginPage.verifyInvalidCredentialsMessage(warningMessages.invalidPassword), 'Verify invalid passeord message is displayed')
+    await testStep.log(loginPage.registerUser(loginDetails.firstName, loginDetails.lastName, loginDetails.email, loginDetails.invalidPassword), 'Register user with invalid password')
+    await testStep.log(loginPage.verifyInvalidCredentialsMessage(warningMessages.invalidPassword), 'Verify invalid password message is displayed')
   })
 })

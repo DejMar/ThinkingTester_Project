@@ -1,5 +1,4 @@
 import { LoginPage } from "../../page-object/LoginPage";
-import { ContactPage } from "../../page-object/AddContactPage";
 import { SharedSteps } from "../../helper/sharedSteps";
 import { expect, test } from '@playwright/test';
 import { faker } from '@faker-js/faker/locale/en'
@@ -8,16 +7,14 @@ const BASE_URL_API = "https://thinking-tester-contact-list.herokuapp.com";
 
 test.describe('API - Manipulating users', () => {
     let loginPage
-    let contactPage
     let sharedSteps
 
     test.beforeEach(async ({ page }) => {
         loginPage = new LoginPage(page)
-        contactPage = new ContactPage(page)
         sharedSteps = new SharedSteps(page)
     })
 
-    test('API - Get Token', async ({ page }) => {
+    test('API - Get Token', async ({ }) => {
         const token = await loginPage.retriveToken();
         console.log(token)
     })

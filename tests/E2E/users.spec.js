@@ -3,6 +3,7 @@ import { LoginPage } from "../../page-object/LoginPage";
 import { ContactPage } from "../../page-object/AddContactPage";
 import { SharedSteps } from "../../helper/sharedSteps";
 import { TestStep } from "../../helper/TestStep";
+import { loginDetails } from "../../data/userData.js"
 
 test.describe('Manipulating users', () => {
   let loginPage
@@ -16,7 +17,7 @@ test.describe('Manipulating users', () => {
     contactPage = new ContactPage(page)
     sharedSteps = new SharedSteps(page)
     await testStep.log(loginPage.openURL(), 'Open the login URL');
-    await testStep.log(loginPage.registerUser(), 'Register a new user');
+    await testStep.log(loginPage.registerUser(loginDetails.firstName, loginDetails.lastName, loginDetails.email, loginDetails.password), 'Register a new user')
   })
 
   test.afterEach(async ({ page }, testInfo) => {

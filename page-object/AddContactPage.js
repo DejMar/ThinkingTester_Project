@@ -52,7 +52,7 @@ export class ContactPage {
     await this.Country.fill(user.country)
   }
 
-  createMultipleRandomUsers = async (numberOfUsers) => {
+  createRandomUsers = async (numberOfUsers) => {
     const users = [];
     for (let i = 0; i < numberOfUsers; i++) {
       await this.clickOnAddContactButton();
@@ -63,7 +63,7 @@ export class ContactPage {
     return users;
   }
 
-  verifyMultipleUsersInTable = async (users) => {
+  verifyUsersInTable = async (users) => {
     // Sort users by last name
     const sortedUsers = users.sort((a, b) => a.lastName.localeCompare(b.lastName));
 

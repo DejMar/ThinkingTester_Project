@@ -41,6 +41,7 @@ export class LoginPage {
 
     verifyInvalidCredentialsMessage = async (message) => {
         await expect(this.errorElement).toHaveText(message);
+        console.log(message)
     }
 
     confirmLogoutButtonDisplayed = async () => {

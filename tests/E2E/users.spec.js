@@ -26,17 +26,28 @@ test.describe('Manipulating users', () => {
   });
 
   test('TC01 Add New User', async ({ }) => {
+    /*
     await testStep.log(contactPage.clickOnAddContactButton(), 'Click on Add Contact button');
     await testStep.log(contactPage.populateDataForNewUser(), 'Fill in new user data');
     await testStep.log(contactPage.clickOnSubmitButton(), 'Submit new user form');
     await testStep.log(contactPage.verifyAddedUserData(), 'Verify added user data');    
+    */
+    const numberOfUsers = 1;
+    const users = await testStep.log(contactPage.createRandomUsers(numberOfUsers), `Create ${numberOfUsers} random users`);
+    await testStep.log(contactPage.verifyUsersInTable(users), `Verify ${numberOfUsers} users are added to the table`);
   })
 
   test('TC02 Update Existing User', async ({ }) => {
+    /*
     await testStep.log(contactPage.clickOnAddContactButton(), 'Click on Add Contact button');
     await testStep.log(contactPage.populateDataForNewUser(), 'Fill in new user data');
     await testStep.log(contactPage.clickOnSubmitButton(), 'Submit new user form');
     await testStep.log(contactPage.verifyAddedUserData(), 'Verify added user data');
+    */
+    const numberOfUsers = 1;
+    const users = await testStep.log(contactPage.createRandomUsers(numberOfUsers), `Create ${numberOfUsers} random users`);
+    await testStep.log(contactPage.verifyUsersInTable(users), `Verify ${numberOfUsers} users are added to the table`);
+
     await testStep.log(contactPage.clickOnEmailLink(), 'Click on email link');
     await testStep.log(contactPage.clickOnEditButton(), 'Click on Edit button');
     await testStep.log(contactPage.populateDataForNewUser(), 'Fill in new user data');
@@ -46,18 +57,24 @@ test.describe('Manipulating users', () => {
   })
 
   test('TC03 Verify deleting user', async ({ }) => {
+    /*
     await testStep.log(contactPage.clickOnAddContactButton(), 'Click on Add Contact button');
     await testStep.log(contactPage.populateDataForNewUser(), 'Fill in new user data');
     await testStep.log(contactPage.clickOnSubmitButton(), 'Submit new user form');
     await testStep.log(contactPage.verifyAddedUserData(), 'Verify added user data');
+    */
+    const numberOfUsers = 1;
+    const users = await testStep.log(contactPage.createRandomUsers(numberOfUsers), `Create ${numberOfUsers} random users`);
+    await testStep.log(contactPage.verifyUsersInTable(users), `Verify ${numberOfUsers} users are added to the table`);
+
     await testStep.log(contactPage.clickOnEmailLink(), 'Click on email link');
     await testStep.log(contactPage.clickOnDeleteButton(), 'Click on Delete button');
     await testStep.log(contactPage.verifyTableIsEmpty(), 'Verify table is empty');
-   })
+  })
 
-   test('TC04 Verify adding multiple users', async ({ }) => {
+  test.only('TC04 Verify adding multiple users', async ({ }) => {
     const numberOfUsers = Math.floor(Math.random() * 10) + 1;
-    const users = await testStep.log(contactPage.createMultipleRandomUsers(numberOfUsers), `Create ${numberOfUsers} random users`);
-    await testStep.log(contactPage.verifyMultipleUsersInTable(users), `Verify ${numberOfUsers} users are added to the table`);
-   })
+    const users = await testStep.log(contactPage.createRandomUsers(numberOfUsers), `Create ${numberOfUsers} random users`);
+    await testStep.log(contactPage.verifyUsersInTable(users), `Verify ${numberOfUsers} users are added to the table`);
+  })
 })

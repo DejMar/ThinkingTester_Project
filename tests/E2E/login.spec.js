@@ -40,19 +40,29 @@ test.describe('Login tests', () => {
     await testStep.log(loginPage.confirmLogoutButtonDisplayed(), 'Confirm logout button is displayed')
   })
 
-  test('TC08 Verify invalid login message is displayed', async ({ }) => {
+  test('TC08 Verify invalid login message is displayed when wrong password is populated', async ({ }) => {
     await testStep.log(loginPage.openURL(), 'Open the login URL')
-    await testStep.log(loginPage.loginWithRegisteredUser(loginDetails.invalidEmail, loginDetails.invalidPassword), 'Login with invalid credentials')
+    await testStep.log(loginPage.registerUser(loginDetails.firstName, loginDetails.lastName, loginDetails.email, loginDetails.password), 'Register a new user')
+    await testStep.log(loginPage.clickOnLogoutButton(), 'Click on logout button')
+    await testStep.log(loginPage.loginWithRegisteredUser(loginDetails.email, loginDetails.invalidPassword), 'Login with invalid credentials')
     await testStep.log(loginPage.verifyInvalidCredentialsMessage(warningMessages.invalidCredentials), 'Verify invalid credentials message is displayed')
   })
 
-  test('TC09 Verify invalid email message is displayed', async ({ }) => {
+  test('TC09 Verify invalid login message is displayed when wrong email is populated', async ({ }) => {
+    await testStep.log(loginPage.openURL(), 'Open the login URL')
+    await testStep.log(loginPage.registerUser(loginDetails.firstName, loginDetails.lastName, loginDetails.email, loginDetails.password), 'Register a new user')
+    await testStep.log(loginPage.clickOnLogoutButton(), 'Click on logout button')
+    await testStep.log(loginPage.loginWithRegisteredUser(loginDetails.invalidEmail, loginDetails.password), 'Login with invalid credentials')
+    await testStep.log(loginPage.verifyInvalidCredentialsMessage(warningMessages.invalidCredentials), 'Verify invalid credentials message is displayed')
+  })
+
+  test('TC10 Verify invalid email message is displayed', async ({ }) => {
     await testStep.log(loginPage.openURL(), 'Open the login URL')
     await testStep.log(loginPage.registerUser(loginDetails.firstName, loginDetails.lastName, loginDetails.invalidEmail, loginDetails.password), 'Register user with invalid email')
     await testStep.log(loginPage.verifyInvalidCredentialsMessage(warningMessages.invalidEmail), 'Verify invalid email message is displayed')
   })
 
-  test('TC10 Verify invalid password message is displayed', async ({ }) => {
+  test('TC11 Verify invalid password message is displayed', async ({ }) => {
     await testStep.log(loginPage.openURL(), 'Open the login URL')
     await testStep.log(loginPage.registerUser(loginDetails.firstName, loginDetails.lastName, loginDetails.email, loginDetails.invalidPassword), 'Register user with invalid password')
     await testStep.log(loginPage.verifyInvalidCredentialsMessage(warningMessages.invalidPassword), 'Verify invalid password message is displayed')

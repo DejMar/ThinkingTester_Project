@@ -2,6 +2,7 @@ import { LoginPage } from "../../page-object/LoginPage";
 import { SharedSteps } from "../../helper/sharedSteps";
 import { expect, test } from '@playwright/test';
 import { faker } from '@faker-js/faker/locale/en'
+import { loginDetails } from "../../data/userData.js"
 
 const BASE_URL_API = "https://thinking-tester-contact-list.herokuapp.com";
 
@@ -15,12 +16,12 @@ test.describe('API - Manipulating users', () => {
     })
 
     test('API - Get Token', async ({ }) => {
-        const token = await loginPage.retriveToken();
+        const token = await loginPage.retriveToken(loginDetails.firstName, loginDetails.lastName, loginDetails.email, loginDetails.password);
         console.log(token)
     })
 
     test('API01 - Verify Added user', async ({ request }) => {
-        const token = await loginPage.retriveToken();
+        const token = await loginPage.retriveToken(loginDetails.firstName, loginDetails.lastName, loginDetails.email, loginDetails.password);
         const userData = await sharedSteps.generateUserData();
 
         const response = await request.post(`${BASE_URL_API}/contacts`, {
@@ -46,7 +47,7 @@ test.describe('API - Manipulating users', () => {
     })
 
     test('API02 - Verify Updated user', async ({ request }) => {
-        const token = await loginPage.retriveToken();
+        const token = await loginPage.retriveToken(loginDetails.firstName, loginDetails.lastName, loginDetails.email, loginDetails.password);
         const userData = await sharedSteps.generateUserData();
 
         const createResponse = await request.post(`${BASE_URL_API}/contacts`, {
@@ -91,7 +92,7 @@ test.describe('API - Manipulating users', () => {
     })
 
     test('API03 - Verify Deleted user', async ({ request }) => {
-        const token = await loginPage.retriveToken();
+        const token = await loginPage.retriveToken(loginDetails.firstName, loginDetails.lastName, loginDetails.email, loginDetails.password);
         const userData = await sharedSteps.generateUserData();
 
         const createResponse = await request.post(`${BASE_URL_API}/contacts`, {

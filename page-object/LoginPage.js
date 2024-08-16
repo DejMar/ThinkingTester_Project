@@ -53,8 +53,8 @@ export class LoginPage {
         await this.logoutButton.click()
     }
 
-    retriveToken = async () => {
-        const token = await getToken(loginDetails.firstName, loginDetails.lastName, loginDetails.email, loginDetails.password);
+    retriveToken = async (firstName, lastName, email, password) => {
+        const token = await getToken(firstName, lastName, email, password);
         return token
     }
 }

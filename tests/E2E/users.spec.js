@@ -37,7 +37,7 @@ test.describe('Manipulating users', () => {
     await testStep.log(contactPage.verifyUsersInTable(users), `Verify ${numberOfUsers} users are added to the table`);
   })
 
-  test('TC02 Update Existing User', async ({ }) => {
+  test('TC02 Update first user', async ({ }) => {
     const numberOfUsers = 1;
     const users = await testStep.log(contactPage.createRandomUsers(numberOfUsers), `Create ${numberOfUsers} random users`);
     await testStep.log(contactPage.verifyUsersInTable(users), `Verify ${numberOfUsers} users are added to the table`);
@@ -49,7 +49,7 @@ test.describe('Manipulating users', () => {
     await testStep.log(contactPage.verifyAddedUserData(), 'Verify added user data');
   })
 
-  test('TC03 Verify deleting user', async ({ }) => {
+  test('TC03 Verify deleting first user', async ({ }) => {
     const numberOfUsers = 3;
     const users = await testStep.log(contactPage.createRandomUsers(numberOfUsers), `Create ${numberOfUsers} random users`);
     await testStep.log(contactPage.verifyUsersInTable(users), `Verify ${numberOfUsers} users are added to the table`);

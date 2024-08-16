@@ -46,6 +46,7 @@ test.describe('Manipulating users', () => {
     await testStep.log(contactPage.clickOnSubmitButton(), 'Submit new user form');
     await testStep.log(contactPage.clickOnReturnToContactListButton(), 'Click on Return to Contact List button');
     await testStep.log(contactPage.verifyAddedUserData(), 'Verify added user data');
+    await testStep.log(sharedSteps.createJsonFromTable(test.info().title), 'Create JSON file')
   })
 
   test('TC03 Verify deleting first user', async ({ }) => {
@@ -60,6 +61,6 @@ test.describe('Manipulating users', () => {
     const numberOfUsers = 9;
     const users = await testStep.log(contactPage.createRandomUsers(numberOfUsers), `Create ${numberOfUsers} random users`);
     await testStep.log(contactPage.verifyUsersInTable(users), `Verify ${numberOfUsers} users are added to the table`);
-    await testStep.log(sharedSteps.createJsonFromTable(), 'Create JSON file')
+    await testStep.log(sharedSteps.createJsonFromTable(test.info().title), 'Create JSON file')
   })
 })

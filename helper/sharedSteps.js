@@ -37,7 +37,7 @@ export class SharedSteps {
         await fs.writeFile(`${testResultsDir}/${testName}_steps_${new Date().toISOString().split('T')[0]}.txt`, steps.join('\n'));
       }
 
-    async createJsonFromTable() {
+    async createJsonFromTable(testTitle) {
         const tableRows = await this.page.locator('#myTable tr').all();
         const data = [];
 
@@ -60,7 +60,8 @@ export class SharedSteps {
         }
 
         const jsonData = JSON.stringify(data, null, 2);
-        const fileName = `table_data_${new Date().toISOString().split('T')[0]}.json`;
+        const sanitizedTestTitle = testTitle.replace(/\s+/g, '_');
+        const fileName = `${sanitizedTestTitle}_table_data_${new Date().toISOString().split('T')[0]}.json`;
         const folderPath = 'data-result';
         const filePath = `${folderPath}/${fileName}`;
 

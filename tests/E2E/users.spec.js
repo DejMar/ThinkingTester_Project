@@ -38,9 +38,8 @@ test.describe('Manipulating users', () => {
   })
 
   test('TC02 Update first user', async ({ }) => {
-    const numberOfUsers = 1;
-    const users = await testStep.log(contactPage.createRandomUsers(numberOfUsers), `Create ${numberOfUsers} random users`);
-    await testStep.log(contactPage.verifyUsersInTable(users), `Verify ${numberOfUsers} users are added to the table`);
+    const users = await testStep.log(contactPage.createRandomUsers(1), `Create one random user`);
+    await testStep.log(contactPage.verifyUsersInTable(users), `Verify one user1 is added to the table`);
     await testStep.log(contactPage.clickOnEmailLink(), 'Click on email link');
     await testStep.log(contactPage.clickOnEditButton(), 'Click on Edit button');
     await testStep.log(contactPage.populateDataForNewUser(), 'Fill in new user data');
@@ -50,9 +49,8 @@ test.describe('Manipulating users', () => {
   })
 
   test('TC03 Verify deleting first user', async ({ }) => {
-    const numberOfUsers = 3;
-    const users = await testStep.log(contactPage.createRandomUsers(numberOfUsers), `Create ${numberOfUsers} random users`);
-    await testStep.log(contactPage.verifyUsersInTable(users), `Verify ${numberOfUsers} users are added to the table`);
+    const users = await testStep.log(contactPage.createRandomUsers(1), `Create one random user`);
+    await testStep.log(contactPage.verifyUsersInTable(users), `Verify one user1 is added to the table`);
     await testStep.log(contactPage.clickOnEmailLink(), 'Click on email link');
     await testStep.log(contactPage.clickOnDeleteButton(), 'Click on Delete button');
     await testStep.log(contactPage.verifyTableIsEmpty(), 'Verify table is empty');

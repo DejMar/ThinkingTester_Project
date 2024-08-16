@@ -57,8 +57,9 @@ test.describe('Manipulating users', () => {
   })
 
   test('TC04 Verify adding multiple users', async ({ }) => {
-    const numberOfUsers = Math.floor(Math.random() * 10) + 1;
+    const numberOfUsers = 9;
     const users = await testStep.log(contactPage.createRandomUsers(numberOfUsers), `Create ${numberOfUsers} random users`);
     await testStep.log(contactPage.verifyUsersInTable(users), `Verify ${numberOfUsers} users are added to the table`);
+    await testStep.log(sharedSteps.createJsonFromTable(), 'Create JSON file')
   })
 })

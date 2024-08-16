@@ -98,7 +98,7 @@ export class ContactPage {
   }
 
   clickOnEmailLink = async () => {
-    await this.TableEmail.click()
+    await this.TableEmail.first().click()
   }
 
   clickOnEditButton = async () => {
@@ -124,6 +124,7 @@ export class ContactPage {
     await expect(this.TableCountry).toHaveCount(0);
   }
 
+  //Unusd code - remove
   verifyAddedUserData = async () => {
     await expect(this.TableName).toHaveText(this.user.firstName + ' ' + this.user.lastName)
     await expect(this.TableEmail).toHaveText(this.user.email.toLowerCase())

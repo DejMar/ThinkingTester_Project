@@ -123,13 +123,43 @@ export class ContactPage {
     await expect(this.TablePhoneNumber).toHaveCount(0);
     await expect(this.TableCountry).toHaveCount(0);
   }
-
-  //Unusd code - remove
   verifyAddedUserData = async () => {
     await expect(this.TableName).toHaveText(this.user.firstName + ' ' + this.user.lastName)
     await expect(this.TableEmail).toHaveText(this.user.email.toLowerCase())
     await expect(this.TableDateOfBirth).toHaveText(this.user.birthdate)
     await expect(this.TablePhoneNumber).toHaveText(this.user.phone)
     await expect(this.TableCountry).toHaveText(this.user.country)
+  }
+
+  populateDesignatedUsers = async () => {
+    const fs = require('fs');
+    const path = require('path');
+    
+    // Read the designatedUsers.json file
+    const filePath = path.join(__dirname, '..', 'data', 'designatedUsers.json');
+    const designatedUsers = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    
+    for (const user of designatedUsers) {
+      await this.clickOnAddContactButton();
+      
+      await this.FirstName.fill(user.firstName);
+      await this.LastName.fill(user.lastName);
+      await this.DateOfBirth.fill(user.dateOfBirth);
+      await this.Email.fill(user.email);
+      await this.PhoneNumber.fill(user.phoneNumber);
+      await this.Address1.fill(user.address1);
+      await this.Address2.fill(user.address2);
+      await this.City.fill(user.city);
+      await this.StateOrProvince.fill(user.stateOrProvince);
+      //await this.PostalCode.fill(user.zipOrPostalCode);
+      await this.Country.fill(user.country);
+      
+      await this.clickOnSubmitButton();
+      
+      // Wait for the submission to complete and return to the contact list
+      await this.page.waitForNavigation();
+    }
+    
+    console.log(`Added ${designatedUsers.length} designated users.`);
   }
 }

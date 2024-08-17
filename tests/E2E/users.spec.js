@@ -1,9 +1,10 @@
-import { test } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 import { LoginPage } from "../../page-object/LoginPage";
 import { ContactPage } from "../../page-object/AddContactPage";
 import { SharedSteps } from "../../helper/sharedSteps";
 import { TestStep } from "../../helper/TestStep";
 import { loginDetails } from "../../data/userData.js"
+import { comparingLinks } from "../../data/dataLinks.js";
 
 test.describe('Manipulating users', () => {
   let loginPage
@@ -35,6 +36,7 @@ test.describe('Manipulating users', () => {
     const numberOfUsers = 1;
     const users = await testStep.log(contactPage.createRandomUsers(numberOfUsers), `Create ${numberOfUsers} random users`);
     await testStep.log(contactPage.verifyUsersInTable(users), `Verify ${numberOfUsers} users are added to the table`);
+    await testStep.log(sharedSteps.createJsonFromTable(test.info().title), 'Create JSON file')
   })
 
   test('TC02 Update first user', async ({ }) => {
@@ -62,5 +64,36 @@ test.describe('Manipulating users', () => {
     const users = await testStep.log(contactPage.createRandomUsers(numberOfUsers), `Create ${numberOfUsers} random users`);
     await testStep.log(contactPage.verifyUsersInTable(users), `Verify ${numberOfUsers} users are added to the table`);
     await testStep.log(sharedSteps.createJsonFromTable(test.info().title), 'Create JSON file')
+  })
+
+  test('TC05 Add and verify designated users', async ({ }) => {
+    await testStep.log(contactPage.populateDesignatedUsers(), 'Populate designated users');
+
+    const getFormattedDesignatedUsers = () => {
+      const fs = require('fs');
+      const path = require('path');
+      //TODO Wrap up this part of code in one method
+      // Read the designatedUsers.json file
+      const filePath = path.join(__dirname, '..', '..', 'data', 'designatedUsers.json');
+      const designatedUsers = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+
+      // Convert designatedUsers to the format expected by verifyUsersInTable
+      return designatedUsers.map(user => ({
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        birthdate: user.dateOfBirth,
+        phone: user.phoneNumber,
+        country: user.country
+      }));
+    };
+    const formattedUsers = getFormattedDesignatedUsers();
+
+    await testStep.log(contactPage.verifyUsersInTable(formattedUsers), 'Verify designated users are added to the table');
+    await testStep.log(sharedSteps.createJsonFromTable(test.info().title), 'Create JSON file');
+    //TODO create list of atributes that needs to be checked in JSON
+    const comparedFiles = await testStep.log(sharedSteps.compareAtributesJsonFiles(comparingLinks.originalPath, comparingLinks.originalFile, comparingLinks.actualPath, comparingLinks.actual_TC05_File, 'dateOfBirth', 'email', 'phoneNumber'), 'Compare JSON files');
+    expect(comparedFiles).toBeTruthy();  
+    console.log(comparedFiles)
   })
 })

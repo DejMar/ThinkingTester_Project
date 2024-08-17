@@ -1,0 +1,41 @@
+[
+  {
+    "firstName": "Peter",
+    "lastName": "Parker",
+    "dateOfBirth": "1977-10-04",
+    "email": "peter.parker@gmail.com",
+    "phoneNumber": "38761876567",
+    "address1": "Test Street 2",
+    "address2": "Test Street 4",
+    "city": "Sarajevo",
+    "stateOrProvince": "FBIH",
+    "zipOrPostalCode": "71000",
+    "country": "Bosnia and Herzegovina"
+  },
+  {
+    "firstName": "Tony",
+    "lastName": "Stark",
+    "dateOfBirth": "1977-10-04",
+    "email": "tony.stark@gmail.com",
+    "phoneNumber": "38761876567",
+    "address1": "Test Street 2",
+    "address2": "Test Street 4",
+    "city": "Sarajevo",
+    "stateOrProvince": "FBIH",
+    "zipOrPostalCode": "71000",
+    "country": "Bosnia and Herzegovina"
+  },
+  {
+    "firstName": "Bruce",
+    "lastName": "Wayne",
+    "dateOfBirth": "1980-10-04",
+    "email": "bruce.wayne@gmail.com",
+    "phoneNumber": "38761876567",
+    "address1": "Test Street 2",
+    "address2": "Test Street 4",
+    "city": "Sarajevo",
+    "stateOrProvince": "FBIH",
+    "zipOrPostalCode": "71000",
+    "country": "Bosnia and Herzegovina"
+  }
+]

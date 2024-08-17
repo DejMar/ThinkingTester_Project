@@ -69,12 +69,12 @@ test.describe('Manipulating users', () => {
   test('TC05 Add and verify designated users', async ({ }) => {
     await testStep.log(contactPage.populateDesignatedUsers(), 'Populate designated users');
 
-    const getFormattedDesignatedUsers = () => {
+    const getFormattedDesignatedUsers = (dataFolder, designatedUsersFile) => {
       const fs = require('fs');
       const path = require('path');
       //TODO Wrap up this part of code in one method
       // Read the designatedUsers.json file
-      const filePath = path.join(__dirname, '..', '..', 'data', 'designatedUsers.json');
+      const filePath = path.join(__dirname, '..', '..', dataFolder, designatedUsersFile);
       const designatedUsers = JSON.parse(fs.readFileSync(filePath, 'utf8'));
 
       // Convert designatedUsers to the format expected by verifyUsersInTable
@@ -87,7 +87,7 @@ test.describe('Manipulating users', () => {
         country: user.country
       }));
     };
-    const formattedUsers = getFormattedDesignatedUsers();
+    const formattedUsers = getFormattedDesignatedUsers('data', 'designatedUsers.json');
 
     await testStep.log(contactPage.verifyUsersInTable(formattedUsers), 'Verify designated users are added to the table');
     await testStep.log(sharedSteps.createJsonFromTable(test.info().title), 'Create JSON file');

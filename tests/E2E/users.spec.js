@@ -66,34 +66,29 @@ test.describe('Manipulating users', () => {
     await testStep.log(sharedSteps.createJsonFromTable(test.info().title), 'Create JSON file')
   })
 
-  test('TC05 Add and verify designated users', async ({ }) => {
-    await testStep.log(contactPage.populateDesignatedUsers(), 'Populate designated users');
-
-    const getFormattedDesignatedUsers = (dataFolder, designatedUsersFile) => {
-      const fs = require('fs');
-      const path = require('path');
-      //TODO Wrap up this part of code in one method
-      // Read the designatedUsers.json file
-      const filePath = path.join(__dirname, '..', '..', dataFolder, designatedUsersFile);
-      const designatedUsers = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-
-      // Convert designatedUsers to the format expected by verifyUsersInTable
-      return designatedUsers.map(user => ({
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email,
-        birthdate: user.dateOfBirth,
-        phone: user.phoneNumber,
-        country: user.country
-      }));
-    };
-    const formattedUsers = getFormattedDesignatedUsers('data', 'designatedUsers.json');
-
+  test('TC05 Add and verify Marvel universe users', async ({ }) => {
+    await testStep.log(contactPage.populateDesignatedUsers('data', 'MARVELUniverseUsers.json'), 'Populate designated users');
+    const formattedUsers = await testStep.log(sharedSteps.getFormattedDesignatedUsers('data', 'MARVELUniverseUsers.json'), 'Get formatted designated users');
     await testStep.log(contactPage.verifyUsersInTable(formattedUsers), 'Verify designated users are added to the table');
     await testStep.log(sharedSteps.createJsonFromTable(test.info().title), 'Create JSON file');
     //TODO create list of atributes that needs to be checked in JSON
-    const comparedFiles = await testStep.log(sharedSteps.compareAtributesJsonFiles(comparingLinks.originalPath, comparingLinks.originalFile, comparingLinks.actualPath, comparingLinks.actual_TC05_File, 'dateOfBirth', 'email', 'phoneNumber'), 'Compare JSON files');
+    const comparedFiles = await testStep.log(sharedSteps.compareAtributesJsonFiles(comparingLinks.originalPath, comparingLinks.originalMarvelFile, comparingLinks.actualPath, comparingLinks.actual_TC05_File, 'dateOfBirth', 'email', 'phoneNumber'), 'Compare JSON files');
     expect(comparedFiles).toBeTruthy();  
     console.log(comparedFiles)
+  })
+
+  test('TC06 Add and verify DC universe users', async ({ }) => {
+    await testStep.log(contactPage.populateDesignatedUsers('data', 'DCUniverseUSers.json'), 'Populate designated users');
+    const formattedUsers = await testStep.log(sharedSteps.getFormattedDesignatedUsers('data', 'DCUniverseUSers.json'), 'Get formatted designated users');
+    await testStep.log(contactPage.verifyUsersInTable(formattedUsers), 'Verify designated users are added to the table');
+    await testStep.log(sharedSteps.createJsonFromTable(test.info().title), 'Create JSON file');
+    //TODO create list of atributes that needs to be checked in JSON
+    const comparedJSONFiles = await testStep.log(sharedSteps.compareJsonFiles(comparingLinks.originalPath, comparingLinks.originalFile_table, comparingLinks.actualPath, comparingLinks.actual_TC06_File), 'Compare JSON files');
+    expect(comparedJSONFiles).toBeTruthy();  
+    console.log(comparedJSONFiles)
+
+    const comparedAtributes = await testStep.log(sharedSteps.compareAtributesJsonFiles(comparingLinks.originalPath, comparingLinks.originalDCFile, comparingLinks.actualPath, comparingLinks.actual_TC06_File, 'dateOfBirth', 'email', 'phoneNumber'), 'Compare JSON files');
+    expect(comparedAtributes).toBeTruthy();  
+    console.log(comparedAtributes)
   })
 })

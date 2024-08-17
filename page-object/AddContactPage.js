@@ -131,12 +131,12 @@ export class ContactPage {
     await expect(this.TableCountry).toHaveText(this.user.country)
   }
 
-  populateDesignatedUsers = async () => {
+  populateDesignatedUsers = async (dataFolder, fileName) => {
     const fs = require('fs');
     const path = require('path');
     
     // Read the designatedUsers.json file
-    const filePath = path.join(__dirname, '..', 'data', 'designatedUsers.json');
+    const filePath = path.join(__dirname, '..', dataFolder, fileName);
     const designatedUsers = JSON.parse(fs.readFileSync(filePath, 'utf8'));
     
     for (const user of designatedUsers) {

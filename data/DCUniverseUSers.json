@@ -1,0 +1,93 @@
+[
+    {
+        "firstName": "Barry",
+        "lastName": "Allen",
+        "dateOfBirth": "1989-03-19",
+        "email": "barry.allen@ccpd.com",
+        "phoneNumber": "5552345678",
+        "address1": "525 W Main St",
+        "address2": "Apt 1",
+        "city": "Central City",
+        "stateOrProvince": "MO",
+        "zipOrPostalCode": "64105",
+        "country": "USA"
+    },
+    {
+        "firstName": "Clark",
+        "lastName": "Kent",
+        "dateOfBirth": "1938-06-18",
+        "email": "clark.kent@dailyplanet.com",
+        "phoneNumber": "5551234567",
+        "address1": "344 Clinton St",
+        "address2": "Apartment 3B",
+        "city": "Metropolis",
+        "stateOrProvince": "NY",
+        "zipOrPostalCode": "10027",
+        "country": "USA"
+    },
+    {
+        "firstName": "Diana",
+        "lastName": "Prince",
+        "dateOfBirth": "3000-12-25",
+        "email": "diana.prince@themyscira.com",
+        "phoneNumber": "5559876543",
+        "address1": "Themyscira Island",
+        "address2": "",
+        "city": "Themyscira",
+        "stateOrProvince": "Amazon",
+        "zipOrPostalCode": "00001",
+        "country": "Greece"
+    },
+    {
+        "firstName": "Steve",
+        "lastName": "Rogers",
+        "dateOfBirth": "1918-07-04",
+        "email": "steve.rogers@avengers.com",
+        "phoneNumber": "5559876543",
+        "address1": "569 Leaman Place",
+        "address2": "",
+        "city": "Brooklyn",
+        "stateOrProvince": "NY",
+        "zipOrPostalCode": "11201",
+        "country": "USA"
+    },
+    {
+        "firstName": "Natasha",
+        "lastName": "Romanoff",
+        "dateOfBirth": "1984-11-22",
+        "email": "natasha.romanoff@shield.gov",
+        "phoneNumber": "5552468135",
+        "address1": "890 Fifth Avenue",
+        "address2": "",
+        "city": "New York",
+        "stateOrProvince": "NY",
+        "zipOrPostalCode": "10021",
+        "country": "USA"
+    },
+    {
+        "firstName": "Tony",
+        "lastName": "Stark",
+        "dateOfBirth": "1970-05-29",
+        "email": "tony.stark@starkindustries.com",
+        "phoneNumber": "5551234567",
+        "address1": "10880 Malibu Point",
+        "address2": "",
+        "city": "Malibu",
+        "stateOrProvince": "CA",
+        "zipOrPostalCode": "90265",
+        "country": "USA"
+    },
+    {
+        "firstName": "Bruce",
+        "lastName": "Wayne",
+        "dateOfBirth": "1939-05-27",
+        "email": "bruce.wayne@wayneenterprises.com",
+        "phoneNumber": "5557654321",
+        "address1": "1007 Mountain Drive",
+        "address2": "",
+        "city": "Gotham",
+        "stateOrProvince": "NJ",
+        "zipOrPostalCode": "07001",
+        "country": "USA"
+    }
+]

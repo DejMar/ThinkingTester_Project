@@ -82,4 +82,21 @@ export class SharedSteps {
 
     return JSON.stringify(file1) === JSON.stringify(file2);
   }
+
+  getFormattedDesignatedUsers(dataFolder, fileName) {
+    const fs = require('fs');
+    const path = require('path');
+    
+    const filePath = path.join(__dirname, '..', dataFolder, fileName);
+    const designatedUsers = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+
+    return designatedUsers.map(user => ({
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      birthdate: user.dateOfBirth,
+      phone: user.phoneNumber,
+      country: user.country
+    }));
+  }
 }

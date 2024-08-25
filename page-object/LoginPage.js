@@ -1,6 +1,6 @@
-import { loginDetails } from "../data/userData.js"
+import { loginDetails } from "../helper/userData.js"
 import { getToken } from "../helper/helper.js"
-import { warningMessages } from "../data/messages.js"
+import { warningMessages } from "../helper/messages.js"
 import { expect } from "@playwright/test"
 
 

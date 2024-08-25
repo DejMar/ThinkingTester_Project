@@ -73,23 +73,6 @@ export class SharedSteps {
     return filePath;
   }
 
-  async compareAtributesJsonFiles(filePath1, fileName1, filePath2, fileName2, dob, email, phone) {
-    const fullFilePath1 = path.join(__dirname, filePath1, fileName1);
-    const fullFilePath2 = path.join(__dirname, filePath2, fileName2);
-
-    const file1 = JSON.parse(await fs.readFile(fullFilePath1, 'utf8'));
-    const file2 = JSON.parse(await fs.readFile(fullFilePath2, 'utf8'));
-
-    const compareFields = [dob, email, phone];
-
-    const areEqual = file1.length === file2.length && file1.every((item1, index) => {
-      const item2 = file2[index];
-      return compareFields.every(field => item1[field] === item2[field]);
-    });
-
-    return areEqual;
-  }
-
   async compareJsonFiles(filePath1, fileName1, filePath2, fileName2) {
     const fullFilePath1 = path.join(__dirname, filePath1, fileName1);
     const fullFilePath2 = path.join(__dirname, filePath2, fileName2);
@@ -98,22 +81,5 @@ export class SharedSteps {
     const file2 = JSON.parse(await fs.readFile(fullFilePath2, 'utf8'));
 
     return JSON.stringify(file1) === JSON.stringify(file2);
-  }
-
-  getFormattedDesignatedUsers(dataFolder, fileName) {
-    const fs = require('fs');
-    const path = require('path');
-    
-    const filePath = path.join(__dirname, '..', dataFolder, fileName);
-    const designatedUsers = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-
-    return designatedUsers.map(user => ({
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.email,
-      birthdate: user.dateOfBirth,
-      phone: user.phoneNumber,
-      country: user.country
-    }));
   }
 }

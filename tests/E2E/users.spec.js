@@ -3,8 +3,8 @@ import { LoginPage } from "../../page-object/LoginPage";
 import { ContactPage } from "../../page-object/AddContactPage";
 import { SharedSteps } from "../../helper/sharedSteps";
 import { TestStep } from "../../helper/TestStep";
-import { loginDetails } from "../../data/userData.js"
-import { comparingLinks } from "../../data/dataLinks.js";
+import { loginDetails } from "../../helper/userData.js";
+import { comparingLinks } from "../../helper/dataLinks.js";
 
 test.describe('Manipulating users', () => {
   let loginPage
@@ -71,10 +71,8 @@ test.describe('Manipulating users', () => {
     const formattedUsers = await testStep.log(sharedSteps.getFormattedDesignatedUsers('data', 'MARVELUniverseUsers.json'), 'Get formatted designated users');
     await testStep.log(contactPage.verifyUsersInTable(formattedUsers), 'Verify designated users are added to the table');
     await testStep.log(sharedSteps.createJsonFromTable(test.info().title), 'Create JSON file');
-    //TODO create list of atributes that needs to be checked in JSON
-    const comparedFiles = await testStep.log(sharedSteps.compareAtributesJsonFiles(comparingLinks.originalPath, comparingLinks.originalMarvelFile, comparingLinks.actualPath, comparingLinks.actual_TC05_File, 'dateOfBirth', 'email', 'phoneNumber'), 'Compare JSON files');
-    expect(comparedFiles).toBeTruthy();  
-    console.log(comparedFiles)
+    const comparedJSONFiles = await testStep.log(sharedSteps.compareJsonFiles(comparingLinks.originalPath, comparingLinks.originalMarvelFile_table, comparingLinks.actualPath, comparingLinks.actual_TC05_File), 'Compare JSON files');
+    expect(comparedJSONFiles).toBeTruthy();  
   })
 
   test('TC06 Add and verify DC universe users', async ({ }) => {
@@ -82,13 +80,7 @@ test.describe('Manipulating users', () => {
     const formattedUsers = await testStep.log(sharedSteps.getFormattedDesignatedUsers('data', 'DCUniverseUSers.json'), 'Get formatted designated users');
     await testStep.log(contactPage.verifyUsersInTable(formattedUsers), 'Verify designated users are added to the table');
     await testStep.log(sharedSteps.createJsonFromTable(test.info().title), 'Create JSON file');
-    //TODO create list of atributes that needs to be checked in JSON
-    const comparedJSONFiles = await testStep.log(sharedSteps.compareJsonFiles(comparingLinks.originalPath, comparingLinks.originalFile_table, comparingLinks.actualPath, comparingLinks.actual_TC06_File), 'Compare JSON files');
+    const comparedJSONFiles = await testStep.log(sharedSteps.compareJsonFiles(comparingLinks.originalPath, comparingLinks.originalDCFile_table, comparingLinks.actualPath, comparingLinks.actual_TC06_File), 'Compare JSON files');
     expect(comparedJSONFiles).toBeTruthy();  
-    console.log(comparedJSONFiles)
-
-    const comparedAtributes = await testStep.log(sharedSteps.compareAtributesJsonFiles(comparingLinks.originalPath, comparingLinks.originalDCFile, comparingLinks.actualPath, comparingLinks.actual_TC06_File, 'dateOfBirth', 'email', 'phoneNumber'), 'Compare JSON files');
-    expect(comparedAtributes).toBeTruthy();  
-    console.log(comparedAtributes)
   })
 })

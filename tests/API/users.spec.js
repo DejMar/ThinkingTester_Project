@@ -2,7 +2,7 @@ import { LoginPage } from "../../page-object/LoginPage";
 import { SharedSteps } from "../../helper/sharedSteps";
 import { expect, test } from '@playwright/test';
 import { faker } from '@faker-js/faker/locale/en'
-import { loginDetails } from "../../data/userData.js"
+import { loginDetails } from "../../helper/userData.js"
 
 const BASE_URL_API = "https://thinking-tester-contact-list.herokuapp.com";
 

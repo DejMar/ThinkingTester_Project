@@ -1,0 +1,47 @@
+[
+    {
+      "name": "Bruce Banner",
+      "dateOfBirth": "1969-12-18",
+      "email": "bruce.banner@marvel.com",
+      "phoneNumber": "3456789012",
+      "addresses": "Stark Tower Room 14",
+      "cityProvinanceZipCode": "New York NY",
+      "country": "USA"
+    },
+    {
+      "name": "Peter Parker",
+      "dateOfBirth": "1995-08-10",
+      "email": "peter.parker@marvel.com",
+      "phoneNumber": "1234567890",
+      "addresses": "20 Ingram Street Apartment 5B",
+      "cityProvinanceZipCode": "Queens NY",
+      "country": "USA"
+    },
+    {
+      "name": "Steve Rogers",
+      "dateOfBirth": "1918-07-04",
+      "email": "steve.rogers@marvel.com",
+      "phoneNumber": "5678901234",
+      "addresses": "569 Leaman Place Brooklyn Heights",
+      "cityProvinanceZipCode": "Brooklyn NY",
+      "country": "USA"
+    },
+    {
+      "name": "Natasha Romanoff",
+      "dateOfBirth": "1984-11-22",
+      "email": "natasha.romanoff@marvel.com",
+      "phoneNumber": "2345678901",
+      "addresses": "Widow's Peak No 12",
+      "cityProvinanceZipCode": "Washington D.C. DC",
+      "country": "USA"
+    },
+    {
+      "name": "Tony Stark",
+      "dateOfBirth": "1970-05-29",
+      "email": "tony.stark@marvel.com",
+      "phoneNumber": "0987654321",
+      "addresses": "10880 Malibu Point Suite 1",
+      "cityProvinanceZipCode": "Malibu CA",
+      "country": "USA"
+    }
+  ]

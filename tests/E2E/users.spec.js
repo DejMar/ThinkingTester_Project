@@ -27,12 +27,6 @@ test.describe('Manipulating users', () => {
   });
 
   test('TC01 Add New User', async ({ }) => {
-    /*
-    await testStep.log(contactPage.clickOnAddContactButton(), 'Click on Add Contact button');
-    await testStep.log(contactPage.populateDataForNewUser(), 'Fill in new user data');
-    await testStep.log(contactPage.clickOnSubmitButton(), 'Submit new user form');
-    await testStep.log(contactPage.verifyAddedUserData(), 'Verify added user data');    
-    */
     const numberOfUsers = 1;
     const users = await testStep.log(contactPage.createRandomUsers(numberOfUsers), `Create ${numberOfUsers} random users`);
     await testStep.log(contactPage.verifyUsersInTable(users), `Verify ${numberOfUsers} users are added to the table`);

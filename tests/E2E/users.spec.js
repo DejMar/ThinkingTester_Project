@@ -71,7 +71,8 @@ test.describe('Manipulating users', () => {
     const formattedUsers = await testStep.log(sharedSteps.getFormattedDesignatedUsers('data', 'MARVELUniverseUsers.json'), 'Get formatted designated users');
     await testStep.log(contactPage.verifyUsersInTable(formattedUsers), 'Verify designated users are added to the table');
     await testStep.log(sharedSteps.createJsonFromTable(test.info().title), 'Create JSON file');
-    const comparedJSONFiles = await testStep.log(sharedSteps.compareJsonFiles(comparingLinks.originalPath, comparingLinks.originalMarvelFile_table, comparingLinks.actualPath, comparingLinks.actual_TC05_File), 'Compare JSON files');
+    await testStep.log(contactPage.convertUserFormatToJson('data', 'MARVELUniverseUsers.json'), 'Convert user format to JSON');
+    const comparedJSONFiles = await testStep.log(sharedSteps.compareJsonFiles(comparingLinks.actualPath, comparingLinks.originalMarvelFile_table, comparingLinks.actualPath, comparingLinks.actual_TC05_File), 'Compare JSON files');
     expect(comparedJSONFiles).toBeTruthy();  
   })
 
@@ -80,7 +81,8 @@ test.describe('Manipulating users', () => {
     const formattedUsers = await testStep.log(sharedSteps.getFormattedDesignatedUsers('data', 'DCUniverseUSers.json'), 'Get formatted designated users');
     await testStep.log(contactPage.verifyUsersInTable(formattedUsers), 'Verify designated users are added to the table');
     await testStep.log(sharedSteps.createJsonFromTable(test.info().title), 'Create JSON file');
-    const comparedJSONFiles = await testStep.log(sharedSteps.compareJsonFiles(comparingLinks.originalPath, comparingLinks.originalDCFile_table, comparingLinks.actualPath, comparingLinks.actual_TC06_File), 'Compare JSON files');
+    await testStep.log(contactPage.convertUserFormatToJson('data', 'DCUniverseUSers.json'), 'Convert user format to JSON');
+    const comparedJSONFiles = await testStep.log(sharedSteps.compareJsonFiles(comparingLinks.actualPath, comparingLinks.originalDCFile_table, comparingLinks.actualPath, comparingLinks.actual_TC06_File), 'Compare JSON files');
     expect(comparedJSONFiles).toBeTruthy();  
   })
 })

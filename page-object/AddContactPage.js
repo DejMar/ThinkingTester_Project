@@ -123,7 +123,7 @@ export class ContactPage {
     await expect(this.TablePhoneNumber).toHaveCount(0);
     await expect(this.TableCountry).toHaveCount(0);
   }
-  
+
   verifyAddedUserData = async () => {
     await expect(this.TableName).toHaveText(this.user.firstName + ' ' + this.user.lastName)
     await expect(this.TableEmail).toHaveText(this.user.email.toLowerCase())
@@ -177,5 +177,31 @@ export class ContactPage {
       cityProvinanceZipCode: `${user.city} ${user.stateOrProvince}`,
       country: user.country
     }));
+  }
+
+  convertUserFormatToJson = async (dataFolder, fileName) => {
+    const fs = require('fs');
+    const path = require('path');
+
+    // Read the original JSON file
+    const originalFilePath = path.join(__dirname, '..', dataFolder, fileName);
+    const originalData = JSON.parse(fs.readFileSync(originalFilePath, 'utf8'));
+
+    // Convert the data format and sort by last name
+    const convertedData = originalData.map(user => ({
+      name: `${user.firstName} ${user.lastName}`,
+      dateOfBirth: user.dateOfBirth,
+      email: user.email,
+      phoneNumber: user.phoneNumber,
+      addresses: `${user.address1} ${user.address2}`,
+      cityProvinanceZipCode: `${user.city} ${user.stateOrProvince}`,
+      country: user.country
+    })).sort((a, b) => a.name.split(' ')[1].localeCompare(b.name.split(' ')[1]));
+
+    // Save the converted and sorted data to a new JSON file
+    const newFileName = `Table_${fileName}`;
+    const newFilePath = path.join(__dirname, '..', 'data-result', newFileName);
+    fs.writeFileSync(newFilePath, JSON.stringify(convertedData, null, 2));
+    console.log(`Converted and sorted JSON file saved: ${newFilePath}`);
   }
 }

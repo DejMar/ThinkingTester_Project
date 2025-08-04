@@ -18,7 +18,5 @@ This project is an end-to-end (E2E) testing suite for a user management applicat
 
 ## Getting Started
 1. **Install Dependencies**: Run `npm install` to install the required packages.
-2. **Run Tests**: Execute `npx playwright test` to run the E2E tests.
+2. **Run Tests**: Execute `npm test` to run the E2E tests.
 
-## Contributing
-Feel free to submit issues or pull requests to enhance the functionality or fix bugs.
